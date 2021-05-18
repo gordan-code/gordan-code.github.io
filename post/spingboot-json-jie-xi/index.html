@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>关于 | Gridea</title>
+<title>SpingBoot JSON解析 | Gridea</title>
 
 <link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1621296363956">
 
@@ -108,27 +108,43 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    关于
+                    SpingBoot JSON解析
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2019-01-25 ·
+                        · 2021-05-17 ·
                     </time>
+                    
+                        <a href="https://gordan-code.github.io/tag/fHJbH9xVD/" class="post-tags">
+                            # springboot
+                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                    <p>HttpMessageConverter  看名字就知道 这是一个消息转换工具<br>
+2方面的功能：<br>
+1.将服务端返回的对象 序列化成JSON字符串<br>
+2.将前端传来的JSON字符串反序列化成Java对象</p>
+<p>所有的JSON生成都离不开相关的HttpMessageConverter</p>
+<p>SpringMVC自动配置了Jackson和Gson的HttpMessageCOnverter<br>
+SpringBoot中又对此做了自动化配置:<br>
+1.org.springframework.boot.autoconfigure.http.JacksonHttpMessageConvertersConfiguration<br>
+2.org.springframework.boot.autoconfigure.http.GsonHttpMessageConvertersConfiguration<br>
+以上是Jackson和Gson的HttpMessageConverter配置类<br>
+所以如果用户使用Jackson和Gson的话 没有其他额外配置<br>
+则只需要添加依赖即可.</p>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gordan-code.github.io/post/docker-desktop-geng-gai-jing-xiang-chu-cun-lu-jing-fang-fa-zhuan-zai/" class="post-title gt-a-link">
+                    docker desktop 更改镜像储存路径方法(转载)
+                </a>
+            </div>
         
 
         

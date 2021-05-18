@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>关于 | Gridea</title>
+<title>FastJson开启安全模式 | Gridea</title>
 
 <link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1621296363956">
 
@@ -108,27 +108,95 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    关于
+                    FastJson开启安全模式
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2019-01-25 ·
+                        · 2021-05-17 ·
                     </time>
+                    
+                        <a href="https://gordan-code.github.io/tag/fHJbH9xVD/" class="post-tags">
+                            # springboot
+                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                    <p>版本: 1.2.68之后<br>
+三种方式<br>
+<strong>1. 在代码中配置</strong><br>
+<code>ParserConfig.getGlobalInstance().setSafeMode(true);</code><br>
+注意，如果使用new ParserConfig的方式，需要注意单例处理，否则会导致低性能full gc。<br>
+<strong>2. 加上JVM启动参数</strong><br>
+<code>-Dfastjson.parser.safeMode=true</code><br>
+如果有多个包名前缀，用逗号隔开</p>
+<p><strong>3. 通过fastjson.properties文件配置。</strong><br>
+通过类路径的fastjson.properties文件来配置，配置方式如下：</p>
+<p><code>fastjson.parser.safeMode=true</code></p>
+<p><strong>4. safeMode场景如何做autoType</strong><br>
+在1.2.68之后的版本，提供了AutoTypeCheckHandler扩展，可以自定义类接管autoType, 通过ParserConfig#addAutoTypeCheckHandler方法注册。</p>
+<pre><code class="language-java">// com.alibaba.fastjson.parser.ParserConfig.AutoTypeCheckHandler
+    /**
+     * @since 1.2.68
+     */
+    public interface AutoTypeCheckHandler {
+        Class&lt;?&gt; handler(String typeName, Class&lt;?&gt; expectClass, int features);
+    }
+
+    // com.alibaba.fastjson.parser.ParserConfig#addAutoTypeCheckHandler
+</code></pre>
+<p><strong>5. 怎么判断是否用到了autoType</strong><br>
+看序列化的代码中是否用到了SerializerFeature.WriteClassName</p>
+<pre><code class="language-java">JSON.toJSONString(obj, SerializerFeature.WriteClassName); // 这种使用会产生@type
+</code></pre>
+<p><strong>6. 使用JSONType.autoTypeCheckHandler</strong><br>
+在fastjson 1.2.71版本中，提供了通过JSONType配置autoTypeCheckHandler的方法，比如：</p>
+<pre><code class="language-java">public class JSONTypeAutoTypeCheckHandlerTest extends TestCase {
+    public void test_for_checkAutoType() throws Exception {
+        Cat cat = (Cat) JSON.parseObject(&quot;{\&quot;@type\&quot;:\&quot;Cat\&quot;,\&quot;catId\&quot;:123}&quot;, Animal.class);
+        assertEquals(123, cat.catId);
+    }
+
+    @JSONType(autoTypeCheckHandler = MyAutoTypeCheckHandler.class)
+    public static class Animal {
+
+    }
+
+    public static class Cat extends Animal {
+        public int catId;
+    }
+
+    public static class Mouse extends Animal {
+
+    }
+
+    public static class MyAutoTypeCheckHandler implements ParserConfig.AutoTypeCheckHandler {
+
+        public Class&lt;?&gt; handler(String typeName, Class&lt;?&gt; expectClass, int features) {
+            if (&quot;Cat&quot;.equals(typeName)) {
+                return Cat.class;
+            }
+
+            if (&quot;Mouse&quot;.equals(typeName)) {
+                return Mouse.class;
+            }
+
+            return null;
+        }
+    }
+}
+</code></pre>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gordan-code.github.io/post/spingboot-json-jie-xi/" class="post-title gt-a-link">
+                    SpingBoot JSON解析
+                </a>
+            </div>
         
 
         

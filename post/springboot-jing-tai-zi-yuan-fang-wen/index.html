@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>关于 | Gridea</title>
+<title>SpringBoot静态资源访问 | Gridea</title>
 
 <link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1621296363956">
 
@@ -108,27 +108,50 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    关于
+                    SpringBoot静态资源访问
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2019-01-25 ·
+                        · 2021-05-17 ·
                     </time>
+                    
+                        <a href="https://gordan-code.github.io/tag/fHJbH9xVD/" class="post-tags">
+                            # springboot
+                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                    <p>1.org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.EnableWebMvcConfiguration#addResourceHandlers</p>
+<p>4个静态资源位置<br>
+1.resources/META-INF/<br>
+2.resources/resources<br>
+3.resources/static 默认<br>
+4.resources/public</p>
+<p>自定义静态资源位置<br>
+1.配置文件<br>
+spring.web.resources.static-locations=classpath:/javaboy/<br>
+spring.mvc.static-path-pattern=/**<br>
+2.全局配置类 config/WebMvcConfig</p>
+<pre><code class="language-java">@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler(&quot;/**&quot;).addResourceLocations(&quot;classpath:/javaboy/&quot;);
+    }
+}
+</code></pre>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gordan-code.github.io/post/fastjson-kai-qi-an-quan-mo-shi/" class="post-title gt-a-link">
+                    FastJson开启安全模式
+                </a>
+            </div>
         
 
         
