@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>SpingBoot JSON解析 | Gridea</title>
+<title>SpringBoot 路径映射 | Gridea</title>
 
 <link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1622421067525">
 
@@ -108,11 +108,11 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    SpingBoot JSON解析
+                    SpringBoot 路径映射
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-05-17 ·
+                        · 2021-05-23 ·
                     </time>
                     
                         <a href="https://gordan-code.github.io/tag/fHJbH9xVD/" class="post-tags">
@@ -121,18 +121,23 @@
                     
                 </div>
                 <div class="post-content">
-                    <p>HttpMessageConverter  看名字就知道 这是一个消息转换工具<br>
-2方面的功能：<br>
-1.将服务端返回的对象 序列化成JSON字符串<br>
-2.将前端传来的JSON字符串反序列化成Java对象</p>
-<p>所有的JSON生成都离不开相关的HttpMessageConverter</p>
-<p>SpringMVC自动配置了Jackson和Gson的HttpMessageCOnverter<br>
-SpringBoot中又对此做了自动化配置:<br>
-1.org.springframework.boot.autoconfigure.http.JacksonHttpMessageConvertersConfiguration<br>
-2.org.springframework.boot.autoconfigure.http.GsonHttpMessageConvertersConfiguration<br>
-以上是Jackson和Gson的HttpMessageConverter配置类<br>
-所以如果用户使用Jackson和Gson的话 没有其他额外配置<br>
-则只需要添加依赖即可.</p>
+                    <p>动态模板<br>
+templates<br>
+设置WebMvcConfig类  实现WebMvcConfiger<br>
+实现addViewController方法</p>
+<pre><code class="language-java">@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        //配置路径映射
+        registry.addViewController(&quot;/javaboy&quot;)
+                .setViewName(&quot;hello&quot;);
+
+    }
+}
+</code></pre>
+<p>这样 就标识/javaboy的路径映射了hello.html页面<br>
+访问loaclhost:8080/javaboy就会看到hello.html</p>
 
                 </div>
             </article>
@@ -141,8 +146,8 @@ SpringBoot中又对此做了自动化配置:<br>
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://gordan-code.github.io/post/docker-desktop-geng-gai-jing-xiang-chu-cun-lu-jing-fang-fa-zhuan-zai/" class="post-title gt-a-link">
-                    docker desktop 更改镜像储存路径方法(转载)
+                <a href="https://gordan-code.github.io/post/springboot-zheng-he-web-ji-chu-zu-jian/" class="post-title gt-a-link">
+                    SpringBoot整合Web基础组件
                 </a>
             </div>
         
