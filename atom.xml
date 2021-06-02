@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gordan-code.github.io</id>
     <title>Gridea</title>
-    <updated>2021-05-31T00:36:46.486Z</updated>
+    <updated>2021-06-02T00:40:11.096Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gordan-code.github.io"/>
     <link rel="self" href="https://gordan-code.github.io/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://gordan-code.github.io/images/avatar.png</logo>
     <icon>https://gordan-code.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[终于我提了离职]]></title>
+        <id>https://gordan-code.github.io/post/zhong-yu-wo-ti-liao-chi-zhi/</id>
+        <link href="https://gordan-code.github.io/post/zhong-yu-wo-ti-liao-chi-zhi/">
+        </link>
+        <updated>2021-05-31T00:37:22.000Z</updated>
+        <content type="html"><![CDATA[<p>身体和精神上均疲惫不堪，终于到了 绷不住的时候</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SpringBoot 路径映射]]></title>
         <id>https://gordan-code.github.io/post/springboot-lu-jing-ying-she/</id>
@@ -477,18 +486,6 @@ SpringBoot中又对此做了自动化配置:<br>
 ————————————————<br>
 版权声明：本文为CSDN博主「xukai_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
 原文链接：https://blog.csdn.net/xukai_/article/details/109610826</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[冲破困境就是最美的风景]]></title>
-        <id>https://gordan-code.github.io/post/chong-po-kun-jing-jiu-shi-zui-mei-de-feng-jing/</id>
-        <link href="https://gordan-code.github.io/post/chong-po-kun-jing-jiu-shi-zui-mei-de-feng-jing/">
-        </link>
-        <updated>2021-05-17T07:14:59.000Z</updated>
-        <content type="html"><![CDATA[<pre><code class="language-Java">public static void main() {
-    
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
