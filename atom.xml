@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gordan-code.github.io</id>
     <title>Gridea</title>
-    <updated>2021-06-03T00:47:50.175Z</updated>
+    <updated>2021-06-04T00:19:29.320Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gordan-code.github.io"/>
     <link rel="self" href="https://gordan-code.github.io/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://gordan-code.github.io/images/avatar.png</logo>
     <icon>https://gordan-code.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[6.4...]]></title>
+        <id>https://gordan-code.github.io/post/64/</id>
+        <link href="https://gordan-code.github.io/post/64/">
+        </link>
+        <updated>2021-06-04T00:15:04.000Z</updated>
+        <content type="html"><![CDATA[<p>距离离职还有26天<br>
+我开始感到难受，因为一直找不到下家<br>
+我决定在单位的时候学go  晚上回家学java<br>
+并开始整理文档 整理面试视频总结<br>
+我所意淫过的未来 可能是去北漂几年 然后回老家结婚<br>
+《自己》里唱道 切记不要与自身的平凡为敌 也没有必要把自己变得不像自己<br>
+但我还是没法不讨厌现在的自己</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[终于我提了离职]]></title>
         <id>https://gordan-code.github.io/post/zhong-yu-wo-ti-liao-chi-zhi/</id>
@@ -471,22 +486,6 @@ SpringBoot中又对此做了自动化配置:<br>
 以上是Jackson和Gson的HttpMessageConverter配置类<br>
 所以如果用户使用Jackson和Gson的话 没有其他额外配置<br>
 则只需要添加依赖即可.</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[docker desktop 更改镜像储存路径方法(转载)]]></title>
-        <id>https://gordan-code.github.io/post/docker-desktop-geng-gai-jing-xiang-chu-cun-lu-jing-fang-fa-zhuan-zai/</id>
-        <link href="https://gordan-code.github.io/post/docker-desktop-geng-gai-jing-xiang-chu-cun-lu-jing-fang-fa-zhuan-zai/">
-        </link>
-        <updated>2021-05-17T08:06:09.000Z</updated>
-        <content type="html"><![CDATA[<p>在较新版本中，docker（windows）有两种启动方式，一种是wsl2，一种是利用hyperv虚拟机。默认是第一种启动的，在设置中general下有相关选项可以选择。</p>
-<p>通过hyperv虚拟机方式启动的，就去改虚拟机的虚拟硬盘位置即可。网上有相关教程。</p>
-<p>着重说一下通过wsl2启动的，docker会自动创建两个子系统，通过wsl --list可以查看，存储位置在C:\Users\你的用户名\AppData\Local\Docker\wsl下对应两个vhdx文件，这里网上有两个方法更改路径：</p>
-<p>第一种是通过wsl相关命令来将子系统导出到其他盘<br>
-第二种比较简单，通过文件联接来解决，关闭docker后首先将Local下整个Docker剪切到其他盘，然后在Local下创建一个文件联接来指向Docker文件夹，命令是mklink /J Docker D:\Docker这里D:\Docker是实际存储位置，然后即可正常启动docker啦，亲测有效。<br>
-————————————————<br>
-版权声明：本文为CSDN博主「xukai_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
-原文链接：https://blog.csdn.net/xukai_/article/details/109610826</p>
 ]]></content>
     </entry>
 </feed>
