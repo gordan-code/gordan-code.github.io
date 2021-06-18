@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>心情 | Gridea</title>
+<title>Spring | Gridea</title>
 
 <link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1623994441101">
 
@@ -33,11 +33,11 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -104,45 +104,49 @@
         }
     }
 </script>
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #心情
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://gordan-code.github.io/post/bei-shang-zhi-shi-yi-chong-pu-bian-de-qing-xu/">
-                            <span class="post-title gt-c-content-color-first">悲伤只是一种普遍的情绪</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-08 ·
-                        </time>
-                        
-                            <a href="https://gordan-code.github.io/tag/5uagK4jph/" class="post-tag">
-                                # 心情
-                            </a>
-                        
-                    </div>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Spring
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-06-18 ·
+                    </time>
+                    
                 </div>
-                
+                <div class="post-content">
+                    <p>Spring的心得:<br>
+Spring是什么?许多人把他形容成一个容器。<br>
+但，万物根上寻，最早的Spring是什么样的呢?是一个bean工厂(BeanFactory)<br>
+这个BeanFactory他应该有什么功能，首先他要有根据名字,class 获取bean 的功能<br>
+好了，你已经得到了一个最原始的Spring了。这就完了?对这就完了。最初的Spring 就是这样<br>
+有了一个BeanFactory以后,又有了新的问题了。那就是,光一个beanFactory 功能太单调了，我现在需要根据配置文件自动装配、生成一个bean,怎么办?<br>
+那就在beanFactory的基础上再增加一个新的接口，那这个新接口叫啥呢?你都不用背只要你用过@autoWire注解，你就能记得，因为这个接口就叫AutowireCapableBeanFactory<br>
+那么 AutowireCapable工厂具体主要负责什么呢<br>
+AutowireCapable工厂用于提供实例化、属性装配、初始化等一系列管理 bean生命周期的支持<br>
+好，由于提供了自动装配功能。现在我想得到所有被某个注解修饰的bean，或者:就想找到目前所有的bean的名字，此时，功能又不满足了。于是，又新建了一个工厂，这个接口名字叫啥?也很好记，因为遍历嘛，那就叫 listablebeanFactory，好了。这个接口写完了。这个时候发现</p>
+<p>Spring 他是一个 棱形的结构。 最上面是  BeanFactory  最下面是   ApplicationContext    市面上有好多人都是从 ApplicationContext开始讲的。 这样讲的缺点是，     ApplicationContext 是另一个部分的内容了。 从 BeanFactory 往下衍生会更好</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gordan-code.github.io/post/docker-ji-ben-shi-yong-ming-ling/" class="post-title gt-a-link">
+                    Docker 基本使用命令
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+
+        
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">一些自言自语</div>

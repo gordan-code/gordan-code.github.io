@@ -1,0 +1,308 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Docker 基本使用命令 | Gridea</title>
+
+<link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1623994441101">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://gordan-code.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Gridea
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1623994441101"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Docker 基本使用命令
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-06-18 ·
+                    </time>
+                    
+                        <a href="https://gordan-code.github.io/tag/Vxj96-7h0/" class="post-tags">
+                            # docker
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="基本命令">基本命令</h1>
+<h2 id="下载镜像">下载镜像</h2>
+<p>以redis为例子</p>
+<pre><code class="language-shell">docker pull redis 
+</code></pre>
+<h2 id="运行镜像">运行镜像</h2>
+<pre><code class="language-shell">docker run \
+-d \ # 后台运行
+--name redis6 \ # 自定义名字
+-p 6379:6379 \ # 端口映射
+redis # 镜像名称
+docker run -d --name redis6 -p 6379:6379 redis redis-server --appendonly yes --requirepass &quot;123456&quot; # 完整命令
+</code></pre>
+<h2 id="进入容器">进入容器</h2>
+<pre><code class="language-shell">docker exec -it 容器id /bin/bash
+</code></pre>
+<h2 id="暂停容器">暂停容器</h2>
+<pre><code class="language-shell">docker stop 容器id
+</code></pre>
+<h2 id="启动容器">启动容器</h2>
+<pre><code class="language-shell">docker start 容器id
+</code></pre>
+<h2 id="查询容器列表">查询容器列表</h2>
+<pre><code class="language-shell">docker ps -a #查看所有容器
+docker ps #查看运行中的容器
+</code></pre>
+<p>run 和 start的区别</p>
+<ul>
+<li>run是创建一个新的容器</li>
+<li>start是把已经创建好的容器启动</li>
+</ul>
+<h2 id="查看容器信息">查看容器信息</h2>
+<pre><code class="language-shell">docker inspect 容器id
+</code></pre>
+<h1 id="挂载">挂载</h1>
+<p>容器里面的文件都是在容器内部，而跟你当前电脑是没有关系的，如果删除了容器怎么办？但是资料又想保存就像mysql一样，我只是换一台电脑就要把整个容器复制过去，太麻烦了！所以需要把容器的文件跟当前主机文件作为一个映射</p>
+<h2 id="命令教程">命令教程</h2>
+<ul>
+<li>参数-v 宿主机路径:容器路径</li>
+</ul>
+<pre><code class="language-shell">#以mysql为例子
+docker run -d --name mysql8 -p 3306:3306 -v /data/mysql8/config:/etc/mysql/conf.d -v /data/mysql8/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
+# 以上的命令可以参考https://hub.docker.com/_/mysql里面有详细介绍
+</code></pre>
+<h2 id="为什么有知道这么多路径或者参数">为什么有知道这么多路径或者参数</h2>
+<ul>
+<li>每个中间件或者一个数据库容器，他可能需要有很多配置，例如密码，持久化文件的路径等等。那我们怎么知道路径是什么</li>
+</ul>
+<ol>
+<li>可以进hub.docker.com找到自己需要的容器然后看文档</li>
+<li>进容器找了</li>
+</ol>
+<h1 id="网络">网络</h1>
+<h2 id="容器之间怎么通讯">容器之间怎么通讯</h2>
+<p>容器虽然是能相互通讯的，但是容器每次重启ip都跟上一次不一样，所以这样通讯会很复杂</p>
+<h2 id="示范">示范</h2>
+<pre><code class="language-shell"># 先拉个centos镜像下来
+docker pull centos
+# 创建个容器
+docker run -d -it --name centos1 centos
+docker run -d -it --name centos2 centos
+
+docker inspect centos1_id
+</code></pre>
+<ul>
+<li>截取一些容器信息下来</li>
+</ul>
+<pre><code class="language-json">[
+    {
+        &quot;NetworkSettings&quot;: {
+            &quot;Networks&quot;: {
+                &quot;bridge&quot;: {
+                    &quot;IPAMConfig&quot;: null,
+                    &quot;Links&quot;: null,
+                    &quot;Aliases&quot;: null,
+                    &quot;NetworkID&quot;: &quot;9e7ed6d29ca3474de04409833e39b7c7965c7c63d3a1f509886a7a998e4825f8&quot;,
+                    &quot;EndpointID&quot;: &quot;41230bf523fac8fa4933989d98baaaa7655fba5c5dadd14e63839ffe868ed3f8&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+                    &quot;IPAddress&quot;: &quot;172.17.0.4&quot;,
+                    &quot;IPPrefixLen&quot;: 16,
+                    &quot;IPv6Gateway&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6PrefixLen&quot;: 0,
+                    &quot;MacAddress&quot;: &quot;02:42:ac:11:00:04&quot;,
+                    &quot;DriverOpts&quot;: null
+                }
+            }
+        }
+    }
+]
+</code></pre>
+<pre><code class="language-shell">docker inspect centos2_id
+</code></pre>
+<pre><code class="language-json">[
+    {
+        &quot;NetworkSettings&quot;: {
+            &quot;Networks&quot;: {
+                &quot;bridge&quot;: {
+                    &quot;IPAMConfig&quot;: null,
+                    &quot;Links&quot;: null,
+                    &quot;Aliases&quot;: null,
+                    &quot;NetworkID&quot;: &quot;9e7ed6d29ca3474de04409833e39b7c7965c7c63d3a1f509886a7a998e4825f8&quot;,
+                    &quot;EndpointID&quot;: &quot;8ae77d46887c795983ee7a8fb96951d05e236b4ca4b4caa5d5964f892e18a476&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+                    &quot;IPAddress&quot;: &quot;172.17.0.5&quot;,
+                    &quot;IPPrefixLen&quot;: 16,
+                    &quot;IPv6Gateway&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6PrefixLen&quot;: 0,
+                    &quot;MacAddress&quot;: &quot;02:42:ac:11:00:05&quot;,
+                    &quot;DriverOpts&quot;: null
+                }
+            }
+        }
+    }
+]
+
+</code></pre>
+<p>以上centos1 ip为172.17.0.4<br>
+以上centos2 ip为172.17.0.5</p>
+<h2 id="解决问题">解决问题</h2>
+<pre><code class="language-shell">docker network create centos-network
+docker run -d -it --network centos-network --name centos3 centos
+docker run -d -it --network centos-network --name centos4 centos
+docker exec -it centos3_id /bin/bash
+ping centos4 
+# 所以当创建了一个network后 容器都能加入到这个网络里面，很方便
+</code></pre>
+<ul>
+<li>这样就可以解决每次容器重启后ip不一致问题</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gordan-code.github.io/post/bei-shang-zhi-shi-yi-chong-pu-bian-de-qing-xu/" class="post-title gt-a-link">
+                    悲伤只是一种普遍的情绪
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">一些自言自语</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://gordan-code.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

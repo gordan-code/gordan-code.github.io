@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gordan-code.github.io</id>
     <title>Gridea</title>
-    <updated>2021-06-08T00:53:09.129Z</updated>
+    <updated>2021-06-18T05:34:03.520Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gordan-code.github.io"/>
     <link rel="self" href="https://gordan-code.github.io/atom.xml"/>
@@ -10,6 +10,164 @@
     <logo>https://gordan-code.github.io/images/avatar.png</logo>
     <icon>https://gordan-code.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Spring]]></title>
+        <id>https://gordan-code.github.io/post/spring/</id>
+        <link href="https://gordan-code.github.io/post/spring/">
+        </link>
+        <updated>2021-06-18T03:43:03.000Z</updated>
+        <content type="html"><![CDATA[<p>Spring的心得:<br>
+Spring是什么?许多人把他形容成一个容器。<br>
+但，万物根上寻，最早的Spring是什么样的呢?是一个bean工厂(BeanFactory)<br>
+这个BeanFactory他应该有什么功能，首先他要有根据名字,class 获取bean 的功能<br>
+好了，你已经得到了一个最原始的Spring了。这就完了?对这就完了。最初的Spring 就是这样<br>
+有了一个BeanFactory以后,又有了新的问题了。那就是,光一个beanFactory 功能太单调了，我现在需要根据配置文件自动装配、生成一个bean,怎么办?<br>
+那就在beanFactory的基础上再增加一个新的接口，那这个新接口叫啥呢?你都不用背只要你用过@autoWire注解，你就能记得，因为这个接口就叫AutowireCapableBeanFactory<br>
+那么 AutowireCapable工厂具体主要负责什么呢<br>
+AutowireCapable工厂用于提供实例化、属性装配、初始化等一系列管理 bean生命周期的支持<br>
+好，由于提供了自动装配功能。现在我想得到所有被某个注解修饰的bean，或者:就想找到目前所有的bean的名字，此时，功能又不满足了。于是，又新建了一个工厂，这个接口名字叫啥?也很好记，因为遍历嘛，那就叫 listablebeanFactory，好了。这个接口写完了。这个时候发现</p>
+<p>Spring 他是一个 棱形的结构。 最上面是  BeanFactory  最下面是   ApplicationContext    市面上有好多人都是从 ApplicationContext开始讲的。 这样讲的缺点是，     ApplicationContext 是另一个部分的内容了。 从 BeanFactory 往下衍生会更好</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docker 基本使用命令]]></title>
+        <id>https://gordan-code.github.io/post/docker-ji-ben-shi-yong-ming-ling/</id>
+        <link href="https://gordan-code.github.io/post/docker-ji-ben-shi-yong-ming-ling/">
+        </link>
+        <updated>2021-06-18T00:39:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="基本命令">基本命令</h1>
+<h2 id="下载镜像">下载镜像</h2>
+<p>以redis为例子</p>
+<pre><code class="language-shell">docker pull redis 
+</code></pre>
+<h2 id="运行镜像">运行镜像</h2>
+<pre><code class="language-shell">docker run \
+-d \ # 后台运行
+--name redis6 \ # 自定义名字
+-p 6379:6379 \ # 端口映射
+redis # 镜像名称
+docker run -d --name redis6 -p 6379:6379 redis redis-server --appendonly yes --requirepass &quot;123456&quot; # 完整命令
+</code></pre>
+<h2 id="进入容器">进入容器</h2>
+<pre><code class="language-shell">docker exec -it 容器id /bin/bash
+</code></pre>
+<h2 id="暂停容器">暂停容器</h2>
+<pre><code class="language-shell">docker stop 容器id
+</code></pre>
+<h2 id="启动容器">启动容器</h2>
+<pre><code class="language-shell">docker start 容器id
+</code></pre>
+<h2 id="查询容器列表">查询容器列表</h2>
+<pre><code class="language-shell">docker ps -a #查看所有容器
+docker ps #查看运行中的容器
+</code></pre>
+<p>run 和 start的区别</p>
+<ul>
+<li>run是创建一个新的容器</li>
+<li>start是把已经创建好的容器启动</li>
+</ul>
+<h2 id="查看容器信息">查看容器信息</h2>
+<pre><code class="language-shell">docker inspect 容器id
+</code></pre>
+<h1 id="挂载">挂载</h1>
+<p>容器里面的文件都是在容器内部，而跟你当前电脑是没有关系的，如果删除了容器怎么办？但是资料又想保存就像mysql一样，我只是换一台电脑就要把整个容器复制过去，太麻烦了！所以需要把容器的文件跟当前主机文件作为一个映射</p>
+<h2 id="命令教程">命令教程</h2>
+<ul>
+<li>参数-v 宿主机路径:容器路径</li>
+</ul>
+<pre><code class="language-shell">#以mysql为例子
+docker run -d --name mysql8 -p 3306:3306 -v /data/mysql8/config:/etc/mysql/conf.d -v /data/mysql8/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
+# 以上的命令可以参考https://hub.docker.com/_/mysql里面有详细介绍
+</code></pre>
+<h2 id="为什么有知道这么多路径或者参数">为什么有知道这么多路径或者参数</h2>
+<ul>
+<li>每个中间件或者一个数据库容器，他可能需要有很多配置，例如密码，持久化文件的路径等等。那我们怎么知道路径是什么</li>
+</ul>
+<ol>
+<li>可以进hub.docker.com找到自己需要的容器然后看文档</li>
+<li>进容器找了</li>
+</ol>
+<h1 id="网络">网络</h1>
+<h2 id="容器之间怎么通讯">容器之间怎么通讯</h2>
+<p>容器虽然是能相互通讯的，但是容器每次重启ip都跟上一次不一样，所以这样通讯会很复杂</p>
+<h2 id="示范">示范</h2>
+<pre><code class="language-shell"># 先拉个centos镜像下来
+docker pull centos
+# 创建个容器
+docker run -d -it --name centos1 centos
+docker run -d -it --name centos2 centos
+
+docker inspect centos1_id
+</code></pre>
+<ul>
+<li>截取一些容器信息下来</li>
+</ul>
+<pre><code class="language-json">[
+    {
+        &quot;NetworkSettings&quot;: {
+            &quot;Networks&quot;: {
+                &quot;bridge&quot;: {
+                    &quot;IPAMConfig&quot;: null,
+                    &quot;Links&quot;: null,
+                    &quot;Aliases&quot;: null,
+                    &quot;NetworkID&quot;: &quot;9e7ed6d29ca3474de04409833e39b7c7965c7c63d3a1f509886a7a998e4825f8&quot;,
+                    &quot;EndpointID&quot;: &quot;41230bf523fac8fa4933989d98baaaa7655fba5c5dadd14e63839ffe868ed3f8&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+                    &quot;IPAddress&quot;: &quot;172.17.0.4&quot;,
+                    &quot;IPPrefixLen&quot;: 16,
+                    &quot;IPv6Gateway&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6PrefixLen&quot;: 0,
+                    &quot;MacAddress&quot;: &quot;02:42:ac:11:00:04&quot;,
+                    &quot;DriverOpts&quot;: null
+                }
+            }
+        }
+    }
+]
+</code></pre>
+<pre><code class="language-shell">docker inspect centos2_id
+</code></pre>
+<pre><code class="language-json">[
+    {
+        &quot;NetworkSettings&quot;: {
+            &quot;Networks&quot;: {
+                &quot;bridge&quot;: {
+                    &quot;IPAMConfig&quot;: null,
+                    &quot;Links&quot;: null,
+                    &quot;Aliases&quot;: null,
+                    &quot;NetworkID&quot;: &quot;9e7ed6d29ca3474de04409833e39b7c7965c7c63d3a1f509886a7a998e4825f8&quot;,
+                    &quot;EndpointID&quot;: &quot;8ae77d46887c795983ee7a8fb96951d05e236b4ca4b4caa5d5964f892e18a476&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+                    &quot;IPAddress&quot;: &quot;172.17.0.5&quot;,
+                    &quot;IPPrefixLen&quot;: 16,
+                    &quot;IPv6Gateway&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6PrefixLen&quot;: 0,
+                    &quot;MacAddress&quot;: &quot;02:42:ac:11:00:05&quot;,
+                    &quot;DriverOpts&quot;: null
+                }
+            }
+        }
+    }
+]
+
+</code></pre>
+<p>以上centos1 ip为172.17.0.4<br>
+以上centos2 ip为172.17.0.5</p>
+<h2 id="解决问题">解决问题</h2>
+<pre><code class="language-shell">docker network create centos-network
+docker run -d -it --network centos-network --name centos3 centos
+docker run -d -it --network centos-network --name centos4 centos
+docker exec -it centos3_id /bin/bash
+ping centos4 
+# 所以当创建了一个network后 容器都能加入到这个网络里面，很方便
+</code></pre>
+<ul>
+<li>这样就可以解决每次容器重启后ip不一致问题</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[悲伤只是一种普遍的情绪]]></title>
         <id>https://gordan-code.github.io/post/bei-shang-zhi-shi-yi-chong-pu-bian-de-qing-xu/</id>
@@ -373,105 +531,6 @@ public class MyErrorVIewResolver extends DefaultErrorViewResolver {
         modelAndView.setViewName(&quot;javaboy&quot;);
         modelAndView.addAllObjects(model);
         return modelAndView;
-    }
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SpringBoot静态资源访问]]></title>
-        <id>https://gordan-code.github.io/post/springboot-jing-tai-zi-yuan-fang-wen/</id>
-        <link href="https://gordan-code.github.io/post/springboot-jing-tai-zi-yuan-fang-wen/">
-        </link>
-        <updated>2021-05-17T13:35:41.000Z</updated>
-        <content type="html"><![CDATA[<p>1.org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.EnableWebMvcConfiguration#addResourceHandlers</p>
-<p>4个静态资源位置<br>
-1.resources/META-INF/<br>
-2.resources/resources<br>
-3.resources/static 默认<br>
-4.resources/public</p>
-<p>自定义静态资源位置<br>
-1.配置文件<br>
-spring.web.resources.static-locations=classpath:/javaboy/<br>
-spring.mvc.static-path-pattern=/**<br>
-2.全局配置类 config/WebMvcConfig</p>
-<pre><code class="language-java">@Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
-        registry.addResourceHandler(&quot;/**&quot;).addResourceLocations(&quot;classpath:/javaboy/&quot;);
-    }
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[FastJson开启安全模式]]></title>
-        <id>https://gordan-code.github.io/post/fastjson-kai-qi-an-quan-mo-shi/</id>
-        <link href="https://gordan-code.github.io/post/fastjson-kai-qi-an-quan-mo-shi/">
-        </link>
-        <updated>2021-05-17T13:35:23.000Z</updated>
-        <content type="html"><![CDATA[<p>版本: 1.2.68之后<br>
-三种方式<br>
-<strong>1. 在代码中配置</strong><br>
-<code>ParserConfig.getGlobalInstance().setSafeMode(true);</code><br>
-注意，如果使用new ParserConfig的方式，需要注意单例处理，否则会导致低性能full gc。<br>
-<strong>2. 加上JVM启动参数</strong><br>
-<code>-Dfastjson.parser.safeMode=true</code><br>
-如果有多个包名前缀，用逗号隔开</p>
-<p><strong>3. 通过fastjson.properties文件配置。</strong><br>
-通过类路径的fastjson.properties文件来配置，配置方式如下：</p>
-<p><code>fastjson.parser.safeMode=true</code></p>
-<p><strong>4. safeMode场景如何做autoType</strong><br>
-在1.2.68之后的版本，提供了AutoTypeCheckHandler扩展，可以自定义类接管autoType, 通过ParserConfig#addAutoTypeCheckHandler方法注册。</p>
-<pre><code class="language-java">// com.alibaba.fastjson.parser.ParserConfig.AutoTypeCheckHandler
-    /**
-     * @since 1.2.68
-     */
-    public interface AutoTypeCheckHandler {
-        Class&lt;?&gt; handler(String typeName, Class&lt;?&gt; expectClass, int features);
-    }
-
-    // com.alibaba.fastjson.parser.ParserConfig#addAutoTypeCheckHandler
-</code></pre>
-<p><strong>5. 怎么判断是否用到了autoType</strong><br>
-看序列化的代码中是否用到了SerializerFeature.WriteClassName</p>
-<pre><code class="language-java">JSON.toJSONString(obj, SerializerFeature.WriteClassName); // 这种使用会产生@type
-</code></pre>
-<p><strong>6. 使用JSONType.autoTypeCheckHandler</strong><br>
-在fastjson 1.2.71版本中，提供了通过JSONType配置autoTypeCheckHandler的方法，比如：</p>
-<pre><code class="language-java">public class JSONTypeAutoTypeCheckHandlerTest extends TestCase {
-    public void test_for_checkAutoType() throws Exception {
-        Cat cat = (Cat) JSON.parseObject(&quot;{\&quot;@type\&quot;:\&quot;Cat\&quot;,\&quot;catId\&quot;:123}&quot;, Animal.class);
-        assertEquals(123, cat.catId);
-    }
-
-    @JSONType(autoTypeCheckHandler = MyAutoTypeCheckHandler.class)
-    public static class Animal {
-
-    }
-
-    public static class Cat extends Animal {
-        public int catId;
-    }
-
-    public static class Mouse extends Animal {
-
-    }
-
-    public static class MyAutoTypeCheckHandler implements ParserConfig.AutoTypeCheckHandler {
-
-        public Class&lt;?&gt; handler(String typeName, Class&lt;?&gt; expectClass, int features) {
-            if (&quot;Cat&quot;.equals(typeName)) {
-                return Cat.class;
-            }
-
-            if (&quot;Mouse&quot;.equals(typeName)) {
-                return Mouse.class;
-            }
-
-            return null;
-        }
     }
 }
 </code></pre>
