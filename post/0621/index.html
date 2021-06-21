@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Spring Boot 通过CORS解决跨域问题 | Gridea</title>
+<title>0621 | Gridea</title>
 
 <link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1624239723510">
 
@@ -108,42 +108,20 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    Spring Boot 通过CORS解决跨域问题
+                    0621
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-05-18 ·
+                        · 2021-06-21 ·
                     </time>
+                    
+                        <a href="https://gordan-code.github.io/tag/5uagK4jph/" class="post-tags">
+                            # 心情
+                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>跨域可以通过前端处理 也可以通过后端处理<br>
-同源策略 ： 协议 域名 端口都要相同<br>
-传统跨域解决方案 JSONP  只支持GET请求  ×<br>
-CORS （跨域源资源共享 Cross-Origin Resource Sharing）W3C标准</p>
-<p>1.在controller上添加@CrossOrigin(origins=&quot;客户端域&quot;)</p>
-<pre><code class="language-java">@RestController
-public class HelloController {
-    @GetMapping(&quot;/hello&quot;)
-    @CrossOrigin(origins = &quot;http://localhost:8081&quot;)
-    public String hello(){
-        return &quot;hello cors&quot;;
-    }
-}
-</code></pre>
-<p>但这个缺点是得写好多次<br>
-2.WebMvcConfig类 实现 WebMvcConfiger类 并重写addCordMapping方法</p>
-<pre><code class="language-java">@Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping(&quot;/**&quot;).allowedOrigins(&quot;http://localhost:8081&quot;)
-                .allowedHeaders(&quot;*&quot;)//允许的请求头
-                .allowedMethods(&quot;*&quot;)//允许的方法
-                .maxAge(30*1000); //有效期
-    }
-}
-</code></pre>
+                    <p>你说世界并不属于我们世界也不属于 任何一个人任何一个人也都不属于任何一个人</p>
 
                 </div>
             </article>
@@ -152,8 +130,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://gordan-code.github.io/post/spring-boot-yi-chang-xiang-guan/" class="post-title gt-a-link">
-                    Spring Boot异常相关
+                <a href="https://gordan-code.github.io/post/spring/" class="post-title gt-a-link">
+                    Spring
                 </a>
             </div>
         

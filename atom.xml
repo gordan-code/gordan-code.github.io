@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gordan-code.github.io</id>
     <title>Gridea</title>
-    <updated>2021-06-18T05:52:36.900Z</updated>
+    <updated>2021-06-21T01:42:18.044Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gordan-code.github.io"/>
     <link rel="self" href="https://gordan-code.github.io/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://gordan-code.github.io/images/avatar.png</logo>
     <icon>https://gordan-code.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[0621]]></title>
+        <id>https://gordan-code.github.io/post/0621/</id>
+        <link href="https://gordan-code.github.io/post/0621/">
+        </link>
+        <updated>2021-06-21T01:41:32.000Z</updated>
+        <content type="html"><![CDATA[<p>你说世界并不属于我们世界也不属于 任何一个人任何一个人也都不属于任何一个人</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Spring]]></title>
         <id>https://gordan-code.github.io/post/spring/</id>
@@ -358,179 +367,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedHeaders(&quot;*&quot;)//允许的请求头
                 .allowedMethods(&quot;*&quot;)//允许的方法
                 .maxAge(30*1000); //有效期
-    }
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Spring Boot异常相关]]></title>
-        <id>https://gordan-code.github.io/post/spring-boot-yi-chang-xiang-guan/</id>
-        <link href="https://gordan-code.github.io/post/spring-boot-yi-chang-xiang-guan/">
-        </link>
-        <updated>2021-05-18T13:52:27.000Z</updated>
-        <content type="html"><![CDATA[<p>** 1.自定义错误页**<br>
-通常我看到的错误页是这样的<br>
-<img src="https://gordan-code.github.io/post-images/1621346191689.jpg" alt="" loading="lazy"><br>
-这是因为没有定义 /error 的</p>
-<p>在resource static目录下新建error目录 新建404.html 500.html<br>
-再访问异常接口 出现<br>
-<img src="https://gordan-code.github.io/post-images/1621346413080.jpg" alt="" loading="lazy"><br>
-因为返回的http 状态码就是500</p>
-<p>也可以创建4xx.html 5xx.html 表示4开头的错误 5开头的错误<br>
-在404.html存在的情况下会优先展示404 如果删掉404.html 会展示4xx</p>
-<p>动态页面 比如thymeleaf<br>
-template目录下新建 5xx.html 4xx.html</p>
-<p>这个页面查找 整体上是<strong>先精确 后模糊 先找动态页面 后找静态页面</strong></p>
-<p><strong>2.异常源码解析</strong></p>
-<p>ErrorMvcAutoConfiguration<br>
-1.DefaultErrorAttributes  定义了异常数据的处理逻辑</p>
-<p>2.DefaultErrorViewResolver 默认的错误视图解析器    定义了异常视图的处理逻辑<br>
-resolveErrorView 方法</p>
-<pre><code class="language-java"> public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status, Map&lt;String, Object&gt; model) {
-     //status.value() 获取当前http status code 400 401 500...
-     //model就是错误数据
-     //调用下方的resolve方法找到对应错误的视图
-        ModelAndView modelAndView = this.resolve(String.valueOf(status.value()), model);
-        //modelAndView ==null 找不到具体的400 去找4xx 5xx 这里的SERIES_VIEWS是一个静态map
-        //status.serires() 点进去 发现这个就是http状态 就是4xx 5xx
-        if (modelAndView == null &amp;&amp; SERIES_VIEWS.containsKey(status.series())) {
-            modelAndView = this.resolve((String)SERIES_VIEWS.get(status.series()), model);
-        }
-
-        return modelAndView;
-    }
-
-//SERIES_VIEWS 就放2个 4xx 5xx
-static {
-        Map&lt;Series, String&gt; views = new EnumMap(Series.class);
-        views.put(Series.CLIENT_ERROR, &quot;4xx&quot;);
-        views.put(Series.SERVER_ERROR, &quot;5xx&quot;);
-        SERIES_VIEWS = Collections.unmodifiableMap(views);
-    }
-
-
-private ModelAndView resolve(String viewName, Map&lt;String, Object&gt; model) {
-    //给 错误视图名加了 error/ 前缀 比如404就是 error/404
-        String errorViewName = &quot;error/&quot; + viewName;
-        //看项目里有没有动态页面
-        TemplateAvailabilityProvider provider = this.templateAvailabilityProviders.getProvider(errorViewName, this.applicationContext);
-        //provider不为 null的话说明有动态页面
-        //没有动态页面 就找静态页面 调用resolveResource
-        return provider != null ? new ModelAndView(errorViewName, model) : this.resolveResource(errorViewName, model);
-    }
-
-//解析静态错误页面
-private ModelAndView resolveResource(String viewName, Map&lt;String, Object&gt; model) {
-        //查找静态资源位置
-        String[] var3 = this.resources.getStaticLocations();
-        int var4 = var3.length;
-
-        for(int var5 = 0; var5 &lt; var4; ++var5) {
-            String location = var3[var5];
-
-            try {
-                Resource resource = this.applicationContext.getResource(location);
-                //查找.html页面 error/404.html
-                resource = resource.createRelative(viewName + &quot;.html&quot;);
-                //如果资源存在
-                if (resource.exists()) {
-                    //封装成ModelAndView 
-                    return new ModelAndView(new DefaultErrorViewResolver.HtmlResourceView(resource), model);
-                }
-            } catch (Exception var8) {
-            }
-        }
-
-        return null;
-    }
-
-</code></pre>
-<p><strong>3.自定义异常数据</strong></p>
-<p>5xx.html中添加如下</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;template-5xx&lt;/h1&gt;
-&lt;table&gt;
-    &lt;tr&gt;
-        &lt;td&gt;path&lt;/td&gt;
-        &lt;td th:text=&quot;${path}&quot;&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;timestamp&lt;/td&gt;
-        &lt;td th:text=&quot;${timestamp}&quot;&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;message&lt;/td&gt;
-        &lt;td th:text=&quot;${message}&quot;&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;error&lt;/td&gt;
-        &lt;td th:text=&quot;${error}&quot;&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;status&lt;/td&gt;
-        &lt;td th:text=&quot;${status}&quot;&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;exception&lt;/td&gt;
-        &lt;td th:text=&quot;${exception}&quot;&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<p>就会出现<br>
-<img src="https://gordan-code.github.io/post-images/1621349393571.jpg" alt="" loading="lazy"></p>
-<p>这些变量 是 DefaultErrorAttributes 类中的 也就是默认的异常数据</p>
-<p>在 ErrorMvcAutoConfiguration 中可以看到 这就是个Bean  其中 DefaultErrorAttributes 就是 ErrorAttributes 的默认实现类 自己提供一个ErrorAttributes就可以</p>
-<pre><code class="language-java">    @Bean
-    @ConditionalOnMissingBean(
-        value = {ErrorAttributes.class},
-        search = SearchStrategy.CURRENT
-    )
-    public DefaultErrorAttributes errorAttributes() {
-        return new DefaultErrorAttributes();
-    }
-</code></pre>
-<p>继承 DefaultErrorAttributes<br>
-重写 getErrorAttributes</p>
-<pre><code class="language-java"> @Override
-    public Map&lt;String, Object&gt; getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
-        Map&lt;String, Object&gt; map = super.getErrorAttributes(webRequest, options);
-        map.put(&quot;myerror&quot;, &quot;这是自定义的异常信息&quot;);
-        return map;
-    }
-</code></pre>
-<p>5xx.html添加</p>
-<pre><code class="language-html">    &lt;tr&gt;
-        &lt;td&gt;myerror&lt;/td&gt;
-        &lt;td th:text=&quot;${myerror}&quot;&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://gordan-code.github.io/post-images/1621350261270.jpg" alt="" loading="lazy"></figure>
-<p><strong>4.自定义异常视图</strong><br>
-同样地  自己提供一个 ErrorViewResolver 就可以了</p>
-<p>自定义类MyErrorViewResolver<br>
-重写resolveErrorView方法</p>
-<pre><code class="language-java">@Component
-public class MyErrorVIewResolver extends DefaultErrorViewResolver {
-
-    public MyErrorVIewResolver(ApplicationContext applicationContext, WebProperties.Resources resources) {
-        super(applicationContext, resources);
-    }
-
-    @Override
-    public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status, Map&lt;String, Object&gt; model) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(&quot;javaboy&quot;);
-        modelAndView.addAllObjects(model);
-        return modelAndView;
     }
 }
 </code></pre>
