@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gordan-code.github.io</id>
     <title>Gridea</title>
-    <updated>2021-06-21T01:42:18.044Z</updated>
+    <updated>2021-06-30T08:27:18.855Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gordan-code.github.io"/>
     <link rel="self" href="https://gordan-code.github.io/atom.xml"/>
@@ -10,6 +10,55 @@
     <logo>https://gordan-code.github.io/images/avatar.png</logo>
     <icon>https://gordan-code.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[模板设计模式]]></title>
+        <id>https://gordan-code.github.io/post/mo-ban-she-ji-mo-shi/</id>
+        <link href="https://gordan-code.github.io/post/mo-ban-she-ji-mo-shi/">
+        </link>
+        <updated>2021-06-30T08:18:48.000Z</updated>
+        <content type="html"><![CDATA[<p>什么是模板设计模式?</p>
+<p>现在的情况是   你要写重复的写很多个类。  这些类都有同样的流程 就是<br>
+先调用A  接着对的返回值进行一样的处理  再调用B  接着调用C</p>
+<p>唯一的问题就是  A  B  C 的代码不同</p>
+<p>那么  现在你要做的是   定义一个 Base类， 这个Base类 有一个run方法，  会  调用A方法  对返回值进行处理，    再调用B  接着调用C</p>
+<p>然后 你写一个子类， 去继承 Base类</p>
+<p>子类重写 A B C 三个方法，然后调用 子类.run 方法，子类.run 方法会去调用 A B C    由于子类重写了 父类的方法。  所以此时会调用 子类的 A   B  C 方法</p>
+<p>于是你会发现。  不变的流程 被抽取了出来。  变化的 A B  C 方法 由子类去实现，不用写流程了</p>
+<pre><code class="language-java">
+public abstract class Base {
+    public abstract void a();
+    public abstract void b();
+    public abstract void c();
+    public void run() {
+    //调用a方法
+    a();
+    b();
+    c();
+    }
+}
+</code></pre>
+<p>这是父类   里面有个 run方法<br>
+test类 继承了 Base 方法    由于 abstract的特性。  所以  重写  A B C</p>
+<pre><code class="language-java">public class test extends Base{
+    public static void main( String[ ] args)i
+        Base t=new test();
+        t.run();
+    }
+    public void a() {
+        System.out.println(&quot;调用A方法&quot;);
+    }
+    public void b(){
+        System.out.println(&quot;调用B方法&quot;);
+    }
+    public void c(){
+        System.out.println(&quot;调用C方法&quot;);
+    }
+
+</code></pre>
+<p>然后可以看到    这个run方法   我并没有写.因为这个是 通用不变的流程   在 Base 里面已经写好了。子类调用就行了<br>
+同时  run 方法运行的时候 调用的 又是   子类实现的  A B C 方法。通过这种方式 就把 变与不变 抽取开来，  程序员只需要关心变化的方法就行。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[0621]]></title>
         <id>https://gordan-code.github.io/post/0621/</id>
@@ -335,41 +384,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 <p>随便起一个HelloController<br>
 会看到<br>
 <img src="https://gordan-code.github.io/post-images/1621439118397.jpg" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Spring Boot 通过CORS解决跨域问题]]></title>
-        <id>https://gordan-code.github.io/post/spring-boot-tong-guo-cors-jie-jue-kua-yu-wen-ti/</id>
-        <link href="https://gordan-code.github.io/post/spring-boot-tong-guo-cors-jie-jue-kua-yu-wen-ti/">
-        </link>
-        <updated>2021-05-18T15:18:55.000Z</updated>
-        <content type="html"><![CDATA[<p>跨域可以通过前端处理 也可以通过后端处理<br>
-同源策略 ： 协议 域名 端口都要相同<br>
-传统跨域解决方案 JSONP  只支持GET请求  ×<br>
-CORS （跨域源资源共享 Cross-Origin Resource Sharing）W3C标准</p>
-<p>1.在controller上添加@CrossOrigin(origins=&quot;客户端域&quot;)</p>
-<pre><code class="language-java">@RestController
-public class HelloController {
-    @GetMapping(&quot;/hello&quot;)
-    @CrossOrigin(origins = &quot;http://localhost:8081&quot;)
-    public String hello(){
-        return &quot;hello cors&quot;;
-    }
-}
-</code></pre>
-<p>但这个缺点是得写好多次<br>
-2.WebMvcConfig类 实现 WebMvcConfiger类 并重写addCordMapping方法</p>
-<pre><code class="language-java">@Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping(&quot;/**&quot;).allowedOrigins(&quot;http://localhost:8081&quot;)
-                .allowedHeaders(&quot;*&quot;)//允许的请求头
-                .allowedMethods(&quot;*&quot;)//允许的方法
-                .maxAge(30*1000); //有效期
-    }
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>

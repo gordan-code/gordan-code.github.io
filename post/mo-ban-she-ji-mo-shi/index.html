@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>标签 | Gridea</title>
+<title>模板设计模式 | Gridea</title>
 
 <link rel="shortcut icon" href="https://gordan-code.github.io/favicon.ico?v=1625041631898">
 
@@ -33,11 +33,11 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -104,34 +104,84 @@
         }
     }
 </script>
-        <div class="post-container">
-            <div class="post-detail gt-bg-theme-color-first">
-                <article class="gt-post-content">
-                    <h2 class="post-title">标签</h2>
-        <div class="tags-container">
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://gordan-code.github.io/tag/O7Hv1r22_/">#设计模式</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://gordan-code.github.io/tag/5uagK4jph/">#心情</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://gordan-code.github.io/tag/Vxj96-7h0/">#docker</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://gordan-code.github.io/tag/4g4v9Kjkp/">#日记</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://gordan-code.github.io/tag/fHJbH9xVD/">#springboot</a>
-            
-                <a class="tag gt-c-content-color-first gt-a-link"
-                   href="https://gordan-code.github.io/tag/gOOV0FwwK/">#Gridea</a>
-            
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    模板设计模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-06-30 ·
+                    </time>
+                    
+                        <a href="https://gordan-code.github.io/tag/O7Hv1r22_/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>什么是模板设计模式?</p>
+<p>现在的情况是   你要写重复的写很多个类。  这些类都有同样的流程 就是<br>
+先调用A  接着对的返回值进行一样的处理  再调用B  接着调用C</p>
+<p>唯一的问题就是  A  B  C 的代码不同</p>
+<p>那么  现在你要做的是   定义一个 Base类， 这个Base类 有一个run方法，  会  调用A方法  对返回值进行处理，    再调用B  接着调用C</p>
+<p>然后 你写一个子类， 去继承 Base类</p>
+<p>子类重写 A B C 三个方法，然后调用 子类.run 方法，子类.run 方法会去调用 A B C    由于子类重写了 父类的方法。  所以此时会调用 子类的 A   B  C 方法</p>
+<p>于是你会发现。  不变的流程 被抽取了出来。  变化的 A B  C 方法 由子类去实现，不用写流程了</p>
+<pre><code class="language-java">
+public abstract class Base {
+    public abstract void a();
+    public abstract void b();
+    public abstract void c();
+    public void run() {
+    //调用a方法
+    a();
+    b();
+    c();
+    }
+}
+</code></pre>
+<p>这是父类   里面有个 run方法<br>
+test类 继承了 Base 方法    由于 abstract的特性。  所以  重写  A B C</p>
+<pre><code class="language-java">public class test extends Base{
+    public static void main( String[ ] args)i
+        Base t=new test();
+        t.run();
+    }
+    public void a() {
+        System.out.println(&quot;调用A方法&quot;);
+    }
+    public void b(){
+        System.out.println(&quot;调用B方法&quot;);
+    }
+    public void c(){
+        System.out.println(&quot;调用C方法&quot;);
+    }
+
+</code></pre>
+<p>然后可以看到    这个run方法   我并没有写.因为这个是 通用不变的流程   在 Base 里面已经写好了。子类调用就行了<br>
+同时  run 方法运行的时候 调用的 又是   子类实现的  A B C 方法。通过这种方式 就把 变与不变 抽取开来，  程序员只需要关心变化的方法就行。</p>
+
+                </div>
+            </article>
         </div>
-    </article>
-</div>
-</div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gordan-code.github.io/post/0621/" class="post-title gt-a-link">
+                    0621
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">一些自言自语</div>
     <div class="social-container">
