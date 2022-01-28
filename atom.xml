@@ -2,14 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gordan-code.github.io</id>
     <title>Gridea</title>
-    <updated>2021-06-30T08:27:18.855Z</updated>
+    <updated>2022-01-28T09:33:09.290Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gordan-code.github.io"/>
     <link rel="self" href="https://gordan-code.github.io/atom.xml"/>
     <subtitle>一些自言自语</subtitle>
     <logo>https://gordan-code.github.io/images/avatar.png</logo>
     <icon>https://gordan-code.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, Gridea</rights>
+    <rights>All rights reserved 2022, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[2022...]]></title>
+        <id>https://gordan-code.github.io/post/2022/</id>
+        <link href="https://gordan-code.github.io/post/2022/">
+        </link>
+        <updated>2022-01-28T09:32:02.000Z</updated>
+        <content type="html"><![CDATA[<p>新的一年 无话可说</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[模板设计模式]]></title>
         <id>https://gordan-code.github.io/post/mo-ban-she-ji-mo-shi/</id>
@@ -336,54 +345,6 @@ public class ServletApplication {
 }
 </code></pre>
 <figure data-type="image" tabindex="1"><img src="https://gordan-code.github.io/post-images/1621779795380.jpg" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SpringBoot注册拦截器]]></title>
-        <id>https://gordan-code.github.io/post/springboot-zhu-ce-lan-jie-qi/</id>
-        <link href="https://gordan-code.github.io/post/springboot-zhu-ce-lan-jie-qi/">
-        </link>
-        <updated>2021-05-19T15:09:44.000Z</updated>
-        <content type="html"><![CDATA[<p>实现HandlerInterceptor类 org.springframework.web.servlet.HandlerInterceptor</p>
-<pre><code class="language-java">public class MyInterceptor implements HandlerInterceptor {
-    //该方法返回 false，请求将不再继续往下走
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println(&quot;preHandle&quot;);
-        return true;
-    }
-
-    //Controller 执行之后被调用
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println(&quot;postHandle&quot;);
-    }
-
-    //preHandle 方法返回 true，afterCompletion 才会执行。
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println(&quot;afterCompletion&quot;);
-    }
-}
-</code></pre>
-<p>WebMvcConfig类 配置拦截器 (使用addInterCeptor)   同时要把拦截器注册成Bean</p>
-<pre><code class="language-java">@Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
-    //配置拦截器
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(myInterceptor()).addPathPatterns(&quot;/**&quot;); //配置拦截路径
-        // '/**'是拦截所有的
-    }
-    @Bean
-    MyInterceptor myInterceptor(){
-        return new MyInterceptor();
-    }
-}
-</code></pre>
-<p>随便起一个HelloController<br>
-会看到<br>
-<img src="https://gordan-code.github.io/post-images/1621439118397.jpg" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>
