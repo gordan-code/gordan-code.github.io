@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gordan-code.github.io</id>
     <title>Gridea</title>
-    <updated>2022-02-24T11:30:04.304Z</updated>
+    <updated>2022-02-24T13:12:45.415Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gordan-code.github.io"/>
     <link rel="self" href="https://gordan-code.github.io/atom.xml"/>
@@ -18,6 +18,11 @@
         <updated>2022-01-28T09:32:02.000Z</updated>
         <content type="html"><![CDATA[<p>新的一年 无话可说</p>
 <p>在临床试验中，有急性过量服用本品13.6g后死亡的报告。在上市后的使用经验中，有单独服用本品6g后死亡的报告。但是，也有急性过量服用本品30g后仍然存活的报告。在上市后的使用经验中，非常罕见有单独使用喹硫平过量导致死亡或昏迷或QT延长的报告。</p>
+<p>喹硫平 0.2g 大概两盒<br>
+苯巴比妥晕车药 致死量为苯巴比妥6～10g<br>
+东莨菪碱口服极量为5毫克/次，致死量为8mg左右<br>
+晕动 本品为复方制剂，每片含苯巴比妥30毫克，氢溴酸东莨菪碱0.2毫克。<br>
+致死量 200-333 片(苯巴比妥) 40(东莨菪碱)</p>
 ]]></content>
     </entry>
     <entry>
